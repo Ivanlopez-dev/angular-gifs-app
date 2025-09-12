@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
 
+    // HTTP CLIENT PROVIDER -> If not specified... Angular will use Traditional XHR request method
     provideHttpClient(withFetch()),
   ]
 };
