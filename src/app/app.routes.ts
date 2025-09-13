@@ -5,6 +5,7 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () =>
       import('./gifs/pages/dashboard-page/dashboard-page.component'),
+
     children: [
       {
         path: 'trending',
@@ -17,15 +18,19 @@ export const routes: Routes = [
           import('./gifs/pages/search-page/search-page.component'),
       },
       {
+        path: 'history/:query',
+        loadComponent: () =>
+          import('./gifs/pages/gif-history/gif-history.component'),
+      },
+      {
         path: '**',
-        redirectTo: 'trending'
-      }
-    ]
+        redirectTo: 'trending',
+      },
+    ],
   },
 
   {
     path: '**',
     redirectTo: 'dashboard',
   },
-
 ];
