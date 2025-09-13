@@ -10,11 +10,21 @@ import { GifService } from '../../services/gifs.service';
 })
 export default class TrendingPageComponent {
   gifService = inject(GifService);
-  scrollDivRef = viewChild<ElementRef>('groupDiv');
+  scrollDivRef = viewChild<ElementRef<HTMLDivElement>>('groupDiv');
 
   onScroll(event: Event) {
     const scrollDiv = this.scrollDivRef()?.nativeElement;
-    console.log(scrollDiv);
+    if (!scrollDiv) return;
 
+
+    const scrollTop = scrollDiv.scrollTop; // -> How much User SCROLLED from top
+    const clientHeight = scrollDiv.clientHeight; // -> // How much is the User VIEWPORT/VIEWPOINT's height
+    const scrollHeight = scrollDiv.scrollHeight; // -> // Max height to the bottom
+
+    const isAtBottom = scrollTop + clientHeight + 300 >= scrollHeight; // ->
+
+    if (isAtBottom) {
+      // TODO: Load next Gif page
+    }
   }
 }
